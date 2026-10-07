@@ -1,6 +1,8 @@
 """
 Rodar com:
     python3 main.py modeloT1.yml
+
+    - Se não utilizar argumento de arquivo modelo, por padrão roda o modeloT1.yml.
 """
 
 import sys
@@ -53,7 +55,7 @@ def rodar_uma_vez(rede_modelo, limite_aleatorios, rng):
 
 
 def main():
-    caminho = sys.argv[1] if len(sys.argv) > 1 else "modeloExemplo.yml"
+    caminho = sys.argv[1] if len(sys.argv) > 1 else "modeloT1.yml"
 
     rede, limite_aleatorios, rng_ou_geradores = carregar_modelo(caminho)
     saida = [f"Simulacao de Rede de Filas - modelo: {caminho}", ""]

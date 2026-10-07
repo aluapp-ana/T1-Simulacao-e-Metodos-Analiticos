@@ -9,4 +9,6 @@ Integrantes:
 pip install pyyaml  # única dependência externa 
 python3 main.py modeloT1.yml
 ```
+- Se não utilizar argumento de arquivo modelo, por padrão roda o modeloT1.yml.
+
 O resultado é impresso no terminal e gravado em `resultado_simulacao.txt`.
