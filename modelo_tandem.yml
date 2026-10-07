@@ -1,0 +1,30 @@
+# Rede tandem ja validada no modulo anterior (Fila 1 -> Fila 2),
+# incluida aqui so para conferencia: deve reproduzir tempo global
+# 100979.0179 e as mesmas distribuicoes de estado de antes.
+
+simulacao:
+  seed: 7
+  limite_aleatorios: 100000
+
+filas:
+  - nome: "Fila 1"
+    servers: 2
+    capacity: 3
+    chegada:
+      min: 1
+      max: 5
+      primeiro_cliente: 2.5
+    atendimento:
+      min: 4
+      max: 5
+    roteamento:
+      - destino: 1
+        probabilidade: 1.0
+
+  - nome: "Fila 2"
+    servers: 1
+    capacity: 5
+    atendimento:
+      min: 1
+      max: 3
+    # sem chegada externa, sem roteamento -> 100% para o exterior
