@@ -1,37 +1,46 @@
-Simulacao de Rede de Filas - modelo: modelo.yml
+Simulacao de Rede de Filas - modelo: modeloT1.yml
+
+=== Rodada 1 (seed=7) ===
 Numero de aleatorios consumidos: 100000
-Tempo global de simulacao: 59930.5451
+Tempo global de simulacao: 50682.3134
 
---- Fila 1 (indice 0, G/G/1/3) ---
-Chegada externa: 1 ... 2
-Atendimento: 2 ... 3
-Roteamento: [(1, 0.2), (2, 0.3), (-1, 0.5)]
+--- Fila1 (indice 0, G/G/1/sem limite) ---
+Chegada externa: 2.0 ... 4.0
+Primeiro cliente em: 2.0
+Atendimento: 1.0 ... 2.0
+Roteamento: [(1, 0.2), (2, 0.8)]
 Estado  Tempo acumulado     Probabilidade (%)   
-0       1.0000              0.0017              
-1       2.2385              0.0037              
-2       18613.5780          31.0586             
-3       41313.7285          68.9360             
-Clientes perdidos: 16000
-
---- Fila 2 (indice 1, G/G/2/4) ---
-Atendimento: 3 ... 5
-Roteamento: [(-1, 1.0)]
-Estado  Tempo acumulado     Probabilidade (%)   
-0       42192.5834          70.4025             
-1       16265.8812          27.1412             
-2       1469.5950           2.4522              
-3       2.4855              0.0041              
-4       0.0000              0.0000              
+0       20361.0901          40.1740             
+1       26532.9245          52.3514             
+2       3663.7432           7.2288              
+3       124.5556            0.2458              
 Clientes perdidos: 0
 
---- Fila 3 (indice 2, G/G/3/5) ---
-Atendimento: 2 ... 4
-Roteamento: [(-1, 1.0)]
+--- Fila2 (indice 1, G/G/2/5) ---
+Atendimento: 4.0 ... 6.0
+Roteamento: [(0, 0.3), (2, 0.5), (-1, 0.19999999999999996)]
 Estado  Tempo acumulado     Probabilidade (%)   
-0       39492.4332          65.8970             
-1       19172.6603          31.9915             
-2       1265.4515           2.1115              
-3       0.0000              0.0000              
-4       0.0000              0.0000              
-5       0.0000              0.0000              
-Clientes perdidos: 0
+0       12443.8961          24.5527             
+1       20710.2409          40.8629             
+2       13015.2403          25.6800             
+3       3798.5181           7.4948              
+4       657.7168            1.2977              
+5       56.7011             0.1119              
+Clientes perdidos: 4
+
+--- Fila3 (indice 2, G/G/2/10) ---
+Atendimento: 5.0 ... 15.0
+Roteamento: [(1, 0.7), (-1, 0.30000000000000004)]
+Estado  Tempo acumulado     Probabilidade (%)   
+0       3.9135              0.0077              
+1       2.6725              0.0053              
+2       4.8843              0.0096              
+3       3.4529              0.0068              
+4       6.2439              0.0123              
+5       8.2524              0.0163              
+6       2.9047              0.0057              
+7       61.2513             0.1209              
+8       2923.3545           5.7680              
+9       15781.2118          31.1375             
+10      31884.1715          62.9099             
+Clientes perdidos: 11664

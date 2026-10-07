@@ -22,7 +22,7 @@
 ## Como rodar
 
 ```bash
-pip install pyyaml   # única dependência externa
+pip install pyyaml  # única dependência externa 
 python3 main.py modelo_exemplo.yml
 ```
 

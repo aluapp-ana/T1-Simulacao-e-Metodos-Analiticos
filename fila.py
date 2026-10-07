@@ -30,7 +30,7 @@ class Fila:
                  rotas=None):
         self.nome = nome
         self.server = servers
-        self.capacity = capacity
+        self.capacity = capacity if capacity is not None else float("inf") # para filas com capacidade infinita
         self.min_arrival = min_arrival
         self.max_arrival = max_arrival
         self.min_service = min_service
@@ -40,7 +40,7 @@ class Fila:
         self.indice = None  # definido por RedeDeFilas ao montar a rede
         self.customers = 0
         self.loss_count = 0
-        self.times = [0.0] * (capacity + 1)  # estados 0..capacity
+        self.times = {}  # estado (int) -> tempo acumulado
 
     # ---- get/set conforme especificação do pseudocódigo ----
     def Status(self):
@@ -62,7 +62,7 @@ class Fila:
         self.customers -= 1
 
     def AcumulaEstado(self, delta_tempo):
-        self.times[self.customers] += delta_tempo
+        self.times[self.customers] = self.times.get(self.customers, 0.0) + delta_tempo
 
     def tem_chegada_externa(self):
         return self.min_arrival is not None and self.max_arrival is not None
