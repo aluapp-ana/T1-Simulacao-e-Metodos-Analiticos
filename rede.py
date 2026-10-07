@@ -1,13 +1,4 @@
 class RedeDeFilas:
-    """ encapsula a listaDeFilas da rede como pedido no enunciado do MODULO 8 e valida o roteamento de cada fila: as
-    probabilidades devem somar 1.0, e cada destino deve ser -1 (exterior)
-    ou um índice válido dentro da lista.
-
-    Preenche `fila.indice` automaticamente conforme a posição de cada
-    fila na lista recebida, é por esse índice que os eventos (Evento)
-    referenciam as filas.
-    """
-
     EXTERIOR = -1
 
     def __init__(self, listaDeFilas):
@@ -39,6 +30,4 @@ class RedeDeFilas:
         return len(self.filas)
 
     def __getitem__(self, indice):
-        # Nunca deve ser chamado com indice == -1 (exterior); quem chama
-        # (o motor da simulacao) ja filtra esse caso antes.
         return self.filas[indice]

@@ -1,6 +1,5 @@
 import heapq
 
-
 class Escalonador:
     def __init__(self):
         self._heap = []

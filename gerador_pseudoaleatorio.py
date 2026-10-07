@@ -1,23 +1,4 @@
-"""Geradores de números pseudoaleatórios usados pela simulação.
-
-- `Gerador`: LCG de verdade (gera os números).
-- `GeradorLista`: "gerador" que só reproduz uma lista fixa de números já
-  sorteados, na ordem dada -- usado para reproduzir, número por número, uma
-  rodada específica (ex.: para comparar com outro simulador que consome a
-  mesma lista de aleatórios, como no modo "rndnumbers" do formato do
-  professor).
-
-Nome do arquivo sem acentuação de propósito: "gerador_pseudoaleatório.py"
-(com acento) pode causar problema de encoding em alguns SOs/clientes git
-(principalmente Windows).
-"""
-
 class Gerador:
-    """Gerador congruente linear misto: X_(n+1) = (a * X_n + c) mod m.
-
-    M grande (ordem de bilhões) conforme o feedback já recebido sobre o
-    simulador de fila única.
-    """
     M = 2 ** 32 
     A = 1664525
     C = 1013904223
@@ -42,12 +23,6 @@ class Gerador:
 
 
 class GeradorLista:
-    """"Gerador" que consome, em ordem, uma lista já pronta de números em
-    [0, 1) em vez de calcular via LCG. Útil para reproduzir exatamente a
-    mesma sequência de aleatórios usada por outro simulador (ex.: o modo
-    'rndnumbers' do formato do professor), permitindo comparar os
-    resultados passo a passo sem depender do algoritmo gerador em si.
-    """
 
     def __init__(self, numeros):
         self._numeros = list(numeros)

@@ -1,61 +1,3 @@
-"""
-Carrega um modelo de rede de filas a partir de um arquivo .yml no mesmo
-estilo usado no simulador do professor (módulo 3):
-
-!PARAMETERS
-arrivals:
-  Q1: 45.0
-
-queues:
-  Q1:
-    servers: 1
-    capacity: 5
-    minArrival: 20.0
-    maxArrival: 40.0
-    minService: 10.0
-    maxService: 12.0
-  Q2:
-    servers: 2
-    capacity: 5
-    minService: 30.0
-    maxService: 120.0
-
-network:
--  source: Q1
-   target: Q2
-   probability: 1.0
-
-rndnumbers:        # OU "seeds" + "rndnumbersPerSeed" (ver abaixo)
-- 0.2176
-- 0.0103
-
-Pontos de atenção do formato:
-
-- `queues` é um MAPEAMENTO nome -> parametros (não uma lista). A ordem de
-  declaração no arquivo vira o índice interno de cada fila (0, 1, 2...) --
-  é por esse índice que o roteamento referencia as filas internamente.
-- O roteamento não fica dentro de cada fila: é a lista separada
-  `network`, com arestas `{source, target, probability}`. Se a soma das
-  probabilidades que saem de uma fila for menor que 1.0, o restante vai
-  implicitamente para o exterior (e se uma fila não aparece como `source`
-  em nenhuma aresta, 100% dos clientes dela saem para o exterior).
-- `arrivals` dá o tempo do PRIMEIRO cliente de cada fila que tem chegada
-  externa (o intervalo de chegada em si continua em `minArrival`/
-  `maxArrival`, dentro de `queues`). Só precisa aparecer para filas que
-  têm chegada externa.
-- `capacity` pode ser omitida -- nesse caso a fila fica sem limite de
-  capacidade (nunca perde cliente por lotação).
-- Números aleatórios, dois modos (se `seeds` estiver presente,
-  `rndnumbers` é ignorado -- use só um dos dois no arquivo real):
-    * `rndnumbers`: lista fixa de números -- reproduzidos exatamente,
-      nesta ordem, via `GeradorLista`. É o modo certo para comparar
-      resultado passo a passo com outro simulador que consome a mesma
-      lista.
-    * `seeds` + `rndnumbersPerSeed`: uma rodada por semente, cada uma
-      consumindo `rndnumbersPerSeed` números do gerador LCG (`Gerador`)
-      semeado com aquele valor.
-"""
-
 import yaml
 
 from fila import Fila
@@ -63,9 +5,6 @@ from rede import RedeDeFilas
 from gerador_pseudoaleatorio import Gerador, GeradorLista
 
 def _remover_marcador_parametros(texto):
-    """A primeira linha do arquivo costuma ser '!PARAMETERS', uma tag YAML
-    sem conteúdo que o `yaml.safe_load` não aceita. Removemos essa linha
-    (e qualquer outra igual a ela) antes do parse."""
     linhas = texto.splitlines()
     linhas_filtradas = [l for l in linhas if l.strip() != "!PARAMETERS"]
     return "\n".join(linhas_filtradas)
@@ -101,7 +40,7 @@ def carregar_modelo(caminho_arquivo):
         fila = Fila(
             nome=nome,
             servers=cfg["servers"],
-            capacity=cfg.get("capacity"),  # None -> Fila trata como sem limite
+            capacity=cfg.get("capacity"),
             min_arrival=cfg.get("minArrival"),
             max_arrival=cfg.get("maxArrival"),
             min_service=cfg["minService"],

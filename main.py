@@ -1,11 +1,6 @@
 """
-Rode com:
-
-    python3 main.py [caminho para o modelo.yml]
-
-Se nenhum caminho for passado, usa "modelo.yml" (a rede de 3 filas
-do enunciado: Fila 1 roteando 20% para a Fila 2, 30% para a Fila 3 e 50%
-para o exterior).
+Rodar com:
+    python3 main.py modeloT1.yml
 """
 
 import sys
@@ -40,9 +35,6 @@ def formatar_resultado(fila):
 
 
 def _clonar_rede(rede_modelo):
-    """Recria as filas do zero (estado zerado) para uma nova rodada --
-    necessario no modo 'seeds', onde cada semente roda sua propria
-    simulacao independente, sem herdar estado da rodada anterior."""
     novas_filas = []
     for fila in rede_modelo:
         nova = Fila(fila.nome, fila.server, fila.capacity,
@@ -67,7 +59,6 @@ def main():
     saida = [f"Simulacao de Rede de Filas - modelo: {caminho}", ""]
 
     if isinstance(rng_ou_geradores, list):
-        # modo "seeds": uma rodada independente por semente
         for i, rng in enumerate(rng_ou_geradores, start=1):
             rede_rodada, tempo_global, consumidos = rodar_uma_vez(rede, limite_aleatorios, rng)
             saida.append(f"=== Rodada {i} (seed={rng.seed_inicial}) ===")
